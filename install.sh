@@ -34,15 +34,21 @@ docker-compose build
 # COPY ENVIRONMENT VARIABLES
 cp www/api/.env.example www/api/.env
 
+# RUN CONTAINERS
+echo "Running containers"
+docker-compose up -d
+
 # INSTALL COMPOSER DEPENDENCIES
 docker-compose run composer install
+
+# SET LARAVEL APP KEY
+docker-compose run artisan key:generate
 
 # RUN MIGRATIONS
 docker-compose run artisan migrate
 
-# RUN CONTAINERS
-echo "Running containers"
-docker-compose up -d
+# SET CORRECT PERMISSIONS
+chmod -R 0777 www/api/storage www/api/bootstrap/cache
 
 # NOTICES
 echo ""

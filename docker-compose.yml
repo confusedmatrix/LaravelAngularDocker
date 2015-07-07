@@ -2,8 +2,8 @@ worker:
   build: images/phpfpm
   links:
     - mysql:mysql
-    - mongodb:mongodb
-    - memcached:memcached
+#    - mongodb:mongodb
+#    - memcached:memcached
     - redis:redis
     - elasticsearch:elasticsearch
     - beanstalkd:beanstalkd
@@ -34,11 +34,11 @@ artisan:
     - worker:worker
     - mysql:mysql
     - redis:redis
-    - memcached:memcached
+#    - memcached:memcached
     - beanstalkd:beanstalkd
   volumes_from:
     - apidata
-  
+
 apidata:
   image: busybox
   volumes:
@@ -65,25 +65,25 @@ mysql:
     MYSQL_PASS: "password"
     ON_CREATE_DB: "apidb"
 
-mongodb:
-  image: tutum/mongodb
-  ports:
-    - "27017:27017"
-    - "28017:28017"
-  environment:
-    MONGODB_PASS: password
+#mongodb:
+#  image: tutum/mongodb
+#  ports:
+#    - "27017:27017"
+#    - "28017:28017"
+#  environment:
+#    MONGODB_PASS: password
 
 beanstalkd:
   image: chriskite/beanstalkd
   ports: 
     - "11300:11300"
 
-memcached:
-  image: tutum/memcached
-  ports:
-    - "11211:11211"
-  environment:
-    MEMCACHED_PASS: password
+#memcached:
+#  image: tutum/memcached
+#  ports:
+#    - "11211:11211"
+#  environment:
+#    MEMCACHED_PASS: password
 
 redis:
   image: tutum/redis
