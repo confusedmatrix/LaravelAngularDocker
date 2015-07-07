@@ -48,7 +48,7 @@ docker-compose run artisan key:generate
 docker-compose run artisan migrate
 
 # SET CORRECT PERMISSIONS
-chmod -R 0777 www/api/storage www/api/bootstrap/cache
+chmod -R 0777 www/api/storage
 
 # NOTICES
 echo ""
